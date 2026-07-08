@@ -60,6 +60,12 @@ PROJECT
 - Un modulo no se activa si su tecnologia no aplica o solo aparece como
   contexto futuro.
 - La activacion de un modulo no activa automaticamente todas sus skills.
+- Un modulo especializado cubre su dominio sin requerir automaticamente un
+  modulo mas general. `software-development` es complementario: no se activa
+  por defecto cuando `web-development` o `data-engineering` cubren el dominio.
+- `computer-vision` puede operar solo incluso con inferencia visual; se activa
+  `artificial-intelligence` solo cuando hay responsabilidades de IA
+  independientes o significativas.
 
 ## Composicion
 

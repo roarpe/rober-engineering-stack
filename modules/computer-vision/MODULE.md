@@ -10,6 +10,12 @@ Seleccionar y componer agentes, skills y gates relevantes para proyectos de
 vision por computador industrial: adquisicion de imagen, procesamiento,
 inspeccion, localizacion, metrologia, vision robotizada e inferencia visual.
 
+Este modulo puede operar de forma independiente aunque incluya un modelo de
+inferencia visual. `artificial-intelligence` se activa conjuntamente solo cuando
+hay responsabilidades de IA independientes o significativas (model lifecycle,
+deployment, evals, observabilidad especifica, MLOps, gobernanza, integracion IA
+transversal).
+
 ## Activation Triggers
 
 - Hay camaras, adquisicion de imagen o procesamiento de imagen.
@@ -114,7 +120,9 @@ Optional Library Skills (segun ARCHITECTURE.md 6.5):
 - Cuando se compone con `robotics`, `vision-ai-integration` y
   `robotics-cell-integration` se activan por trigger, no duplicadamente.
 - Cuando se compone con `artificial-intelligence`, `vision-ai-integration` se
-  activa una sola vez.
+  activa una sola vez. `computer-vision` puede operar solo con inferencia
+  visual; `artificial-intelligence` es complementario cuando hay responsabilidades
+  de IA independientes.
 - Cuando se compone con `industrial-automation`, los triggers de inspeccion y
   handshake los define el lado de automatizacion.
 - Cuando se compone con `software-development`,

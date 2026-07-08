@@ -10,6 +10,10 @@ Seleccionar y componer agentes, skills y gates relevantes para proyectos de
 software: aplicaciones, servicios, APIs, backend, integraciones, Python, C++,
 C#, bases de datos, packaging, deployment y observabilidad.
 
+Este modulo es complementario, no base obligatoria. Cuando `web-development` o
+`data-engineering` cubran completamente el dominio activo, no se activa este
+modulo por el mero hecho de existir backend, APIs, servicios o codigo.
+
 ## Activation Triggers
 
 - Hay codigo backend, CLI, servicios, librerias o integraciones.
@@ -23,6 +27,9 @@ C#, bases de datos, packaging, deployment y observabilidad.
 - El proyecto es puramente PLC sin interfaces software.
 - El cambio es documental menor sin codigo.
 - Software solo aparece como contexto futuro no abordado.
+- El dominio activo esta cubierto completamente por `web-development` o
+  `data-engineering` y no hay trabajo software transversal o responsabilidades
+  software no cubiertas por el modulo especializado.
 
 ## Primary Agents
 

@@ -23,6 +23,9 @@ observabilidad, lifecycle y fallback.
 - IA solo aparece como contexto futuro no abordado.
 - El proyecto es puramente PLC o robotica sin componente de IA.
 - El cambio es documental menor sin contenido de IA.
+- La inferencia es exclusivamente visual y esta cubierta por `computer-vision`
+  sin responsabilidades de IA independientes (model lifecycle, deployment, evals,
+  observabilidad especifica, MLOps, gobernanza, integracion IA transversal).
 
 ## Primary Agents
 
@@ -109,6 +112,9 @@ Optional Library Skills (segun ARCHITECTURE.md 6.4):
 
 - Cuando se compone con `computer-vision`, `vision-ai-integration` se activa
   una sola vez. El modulo no se convierte en guia de machine learning.
+- `computer-vision` puede operar solo con inferencia visual; este modulo se
+  activa conjuntamente cuando hay responsabilidades de IA independientes o
+  significativas.
 - Cuando se compone con `software-development`, `industrial-python-engineering`
   se activa una sola vez si Python aplica.
 - Cuando se compone con `industrial-automation`, los triggers y resultados de

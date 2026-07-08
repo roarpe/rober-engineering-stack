@@ -101,6 +101,9 @@ Optional Library Skills (segun ARCHITECTURE.md 6.7):
 ## Composition Rules
 
 - No asumir automaticamente que toda interfaz industrial debe ser web.
+- No requiere `software-development` por defecto: backend web, APIs web y
+  servicios web estan dentro de su dominio. `software-development` es
+  complementario cuando hay trabajo software transversal no cubierto.
 - Cuando se compone con `data-engineering`, los contratos de datos los define
   SE (data); el modulo web consume.
 - Cuando se compone con `industrial-automation`, las interfaces HMI/SCADA

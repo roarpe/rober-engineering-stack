@@ -1,7 +1,7 @@
 # ROBER ENGINEERING STACK v1.0 - Architecture
 
-Fecha: 2026-07-07 (Fase 2); actualizado 2026-07-08 (Fase 9A)
-Fase: 9A - Documentacion reconciliada tras implementacion de Fases 3-8
+Fecha: 2026-07-07 (Fase 2); actualizado 2026-07-08 (Fase 9A); sincronizado 2026-07-08 (Fase 10)
+Fase: 10 - Contratos sincronizados tras validacion operacional (Fase 9B)
 Estado: arquitectura implementada con 4 gates, 6 agentes, 9 skills y 8 modulos
 
 ## 1. Fuentes de verdad
@@ -387,9 +387,15 @@ Los modulos se activan por proyecto, tecnologia, riesgo o fase. Ninguno debe est
 
 ### 6.1 software-development
 
+Complementario, no base obligatoria. Cuando `web-development` o `data-engineering`
+cubren completamente el dominio activo, no se activa este modulo por el mero hecho
+de existir backend, APIs, servicios o codigo.
+
 Activar cuando:
 
 - Hay codigo backend, CLI, servicios, librerias o integraciones.
+- Hay trabajo software transversal o responsabilidades software no cubiertas por
+  `web-development`, `data-engineering` u otros modulos especializados.
 
 Skills bajo demanda:
 
@@ -404,6 +410,8 @@ Skills bajo demanda:
 No usar cuando:
 
 - El trabajo es solo documentacion industrial sin software.
+- El dominio activo esta cubierto completamente por un modulo especializado y no
+  hay responsabilidades software adicionales.
 
 ### 6.2 industrial-automation
 
@@ -439,9 +447,17 @@ No usar cuando:
 
 ### 6.4 artificial-intelligence
 
+No se activa por el mero hecho de existir inferencia visual o un modelo en un
+sistema de vision. `computer-vision` cubre la inferencia visual por si mismo.
+Se activa este modulo cuando hay responsabilidades de IA independientes o
+significativas: model lifecycle, deployment, evals, observabilidad especifica,
+MLOps, gobernanza o integracion IA transversal.
+
 Activar cuando:
 
 - Hay modelos, agentes, pipelines de IA, evals, prompts, razonamiento o aprendizaje.
+- Hay responsabilidades de IA independientes de `computer-vision` (lifecycle,
+  deployment, evals, MLOps, gobernanza).
 
 Skills bajo demanda:
 
@@ -455,8 +471,14 @@ Skills bajo demanda:
 No usar cuando:
 
 - La IA no afecta diseno, validacion ni operacion.
+- La inferencia es exclusivamente visual y esta cubierta por `computer-vision`
+  sin responsabilidades de IA adicionales.
 
 ### 6.5 computer-vision
+
+Puede operar de forma independiente aunque incluya un modelo de inferencia visual.
+`artificial-intelligence` es complementario cuando hay responsabilidades de IA
+independientes o significativas.
 
 Activar cuando:
 
@@ -1041,7 +1063,9 @@ No usar un agente cuando:
 
 ## 14. ADR policy
 
-En esta fase no se crean ADRs separados para evitar construir estructura antes de Fase 3.
+> Nota (Fase 9A): La politica original de Fase 2 recomendaba no crear ADRs
+> antes de Fase 3. Fase 3 esta completada. Los ADRs listados a continuacion
+> son candidatos para fases posteriores cuando se adopten formalmente.
 
 ADRs recomendados para fases posteriores:
 

@@ -39,7 +39,7 @@ Principios base:
 
 1. **Global Core** minimo ([AGENTS.md](AGENTS.md)).
 2. **Engineering Gates** -- 4 gates de calidad y verificacion.
-3. **Project Modules** -- modulos activables por dominio (pendiente).
+3. **Project Modules** -- 8 modulos activables por dominio.
 4. **Custom Industrial Skills** -- 9 skills industriales bajo demanda.
 5. **Optional Skill Library** -- skills externas de referencia.
 
@@ -130,7 +130,7 @@ PROYECTO
 - **Skill**: procedimiento activable. Produce artefactos que gates consumen.
   No reemplaza gates. No toma decisiones arquitectonicas.
 - **Module**: dominio de proyecto. Determina que agentes y skills son
-  relevantes. Pendiente de implementacion.
+  relevantes. Ver `modules/README.md`.
 
 ## Flujo operativo de alto nivel
 
@@ -159,6 +159,8 @@ No todos los pasos aplican a todos los proyectos. La proporcionalidad decide.
 ├── README.md                    # Este archivo
 ├── ENVIRONMENT_AUDIT.md         # Auditoria del entorno (Fase 0)
 ├── SKILLS_AUDIT.md              # Auditoria de skills (Fase 1)
+├── STACK_COHERENCE_AUDIT.md     # Auditoria de coherencia (Fase 7F)
+├── STACK_OPERATIONAL_VALIDATION.md  # Validacion operacional (Fase 9B)
 ├── agents/                      # 6 Specialized Agents
 │   ├── README.md
 │   ├── engineering-architect/AGENT.md
@@ -173,6 +175,16 @@ No todos los pasos aplican a todos los proyectos. La proporcionalidad decide.
 │   ├── decision-readiness/GATE.md
 │   ├── implementation-review/GATE.md
 │   └── final-verification/GATE.md
+├── modules/                     # 8 Project Modules
+│   ├── README.md
+│   ├── software-development/MODULE.md
+│   ├── industrial-automation/MODULE.md
+│   ├── robotics/MODULE.md
+│   ├── artificial-intelligence/MODULE.md
+│   ├── computer-vision/MODULE.md
+│   ├── data-engineering/MODULE.md
+│   ├── web-development/MODULE.md
+│   └── git-parallel-delivery/MODULE.md
 ├── skills/                      # 9 Custom Industrial Skills
 │   ├── README.md
 │   ├── industrial-project-discovery/SKILL.md
@@ -204,11 +216,12 @@ Fases completadas:
 
 Fases pendientes:
 
-- Fase 8: creacion de Project Modules.
-- Fase 9: creacion de templates.
-- Fase 10: testing del sistema.
 - Fase 11: proyecto piloto.
 - Fase 12: evaluacion y mejora.
+
+> Nota: Fases 8-10 completadas. Fase 8 creo los 8 Project Modules. Fase 9A
+> reconcilio la documentacion. Fase 9B valido operacionalmente el stack. Fase
+> 10 sincronizo contratos y evaluo release readiness.
 
 ## Como empezar a explorar
 
@@ -218,7 +231,8 @@ Fases pendientes:
 3. [gates/README.md](gates/README.md) -- Engineering Gates.
 4. [agents/README.md](agents/README.md) -- Specialized Agents.
 5. [skills/README.md](skills/README.md) -- Custom Industrial Skills.
-6. [SKILLS_AUDIT.md](SKILLS_AUDIT.md) -- auditoria historica de skills.
+6. [modules/README.md](modules/README.md) -- Project Modules.
+7. [SKILLS_AUDIT.md](SKILLS_AUDIT.md) -- auditoria historica de skills.
 
 ## Politica de estructura progresiva
 

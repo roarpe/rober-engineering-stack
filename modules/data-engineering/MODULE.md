@@ -100,6 +100,9 @@ Optional Library Skills (segun ARCHITECTURE.md 6.6):
 
 ## Composition Rules
 
+- No requiere `software-development` por defecto: adquisicion, procesamiento,
+  pipelines y persistencia estan dentro de su dominio. `software-development` es
+  complementario cuando hay trabajo software transversal no cubierto.
 - Cuando se compone con `industrial-automation`, `industrial-communications-
   design` se activa una sola vez para adquisicion OT.
 - Cuando se compone con `software-development`,
