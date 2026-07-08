@@ -78,8 +78,11 @@ Contenido obligatorio:
 - Objetivo, alcance, usuarios, restricciones y criterios de aceptacion estan
   claros.
 - No hay vocabulario de dominio contradictorio sin resolver.
-- Las decisiones bloqueantes estan resueltas o enviadas al Decision Readiness
-  Gate.
+- Las decisiones bloqueantes estan resueltas o derivadas al Decision Readiness
+  Gate. Cuando existen decisiones blocking derivadas, Requirements Quality
+  puede completar su responsabilidad (PASS), pero el workflow NO puede avanzar
+  a arquitectura/planificacion hasta que Decision Readiness Gate supere con
+  PASS.
 - Existe output documental suficiente para arquitectura o planificacion.
 
 ## FAIL Criteria
@@ -109,6 +112,7 @@ Contenido obligatorio:
 
 ## Handoff
 
-- **PASS sin decisiones abiertas** -> arquitectura/planificacion.
-- **PASS con decisiones abiertas** -> Decision Readiness Gate.
+- **PASS sin decisiones blocking** -> arquitectura/planificacion.
+- **PASS con decisiones blocking derivadas** -> Decision Readiness Gate. El
+  workflow queda bloqueado hasta que DR supere con PASS.
 - **FAIL** -> discovery adicional o consulta al usuario.

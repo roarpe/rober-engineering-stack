@@ -6,10 +6,11 @@ Decision Readiness Gate
 
 ## Purpose
 
-Determinar si las decisiones tecnicas bloqueantes estan resueltas o tienen un
-mecanismo claro de resolucion. Evitar disenar arquitectura sobre suposiciones no
-verificadas. Distinguir decisiones bloqueantes de deferibles y registrar
-dependencias entre ellas.
+Determinar si las decisiones tecnicas bloqueantes estan resueltas con
+evidencia. Evitar disenar arquitectura sobre suposiciones no verificadas.
+Distinguir decisiones bloqueantes de deferibles y registrar dependencias entre
+ellas. Tener un plan de resolucion (owner y Resolution Method) no es suficiente
+para PASS; el plan debe ejecutarse y producir evidencia.
 
 ## Trigger
 
@@ -60,10 +61,11 @@ Engineering Architect
    - Resolution Method (como se resolvera).
    - Status (open/resolved/deferred).
 3. Clasificar cada decision como blocking o deferrable.
-4. Para decisiones blocking, verificar si tienen informacion suficiente o plan
-   de resolucion.
-5. Para decisiones deferrables, confirmar que pueden posponerse sin riesgo
-   arquitectonico.
+4. Para decisiones blocking, verificar si estan resueltas con evidencia. Si no
+   estan resueltas, registrar el plan de resolucion (owner, Resolution Method)
+   pero el gate permanece FAIL hasta ejecutar dicho plan y obtener evidencia.
+5. Para decisiones deferrables, confirmar que pueden posponerse. Deben tener
+   owner, justificacion, riesgo aceptado y condicion explicita de reactivacion.
 6. Verificar que las dependencias entre decisiones estan claras.
 7. Producir el artefacto de salida con la decision PASS o FAIL.
 
@@ -86,45 +88,60 @@ Contenido obligatorio:
 
 - Lista de decisiones con todos los campos del procedimiento.
 - Clasificacion blocking/deferrable para cada decision.
+- Estado de cada decision: resolved, open (con plan de resolucion) o deferred.
 - Dependencias entre decisiones mapeadas.
 - Recomendaciones de prototipo, investigacion o ADR cuando aplique.
 - Decision: PASS o FAIL.
 
 ## PASS Criteria
 
-- Las decisiones bloqueantes estan resueltas o tienen plan de resolucion con
-  owner y metodo definidos.
-- Se sabe que decisiones pueden diferirse y por que.
+- Todas las decisiones blocking estan resueltas con evidencia (status:
+  resolved). Tener unicamente owner y Resolution Method define un plan, pero no
+  es suficiente para PASS.
+- Las decisiones deferrable pueden permanecer abiertas (status: deferred) si
+  tienen owner, justificacion, riesgo aceptado y condicion explicita de
+  reactivacion.
 - Las dependencias entre decisiones estan claras.
 - No se disenara arquitectura sobre suposiciones criticas no verificadas.
 
 ## FAIL Criteria
 
-- Hay decisiones bloqueantes sin owner.
-- Faltan datos necesarios para decisiones bloqueantes.
+- Hay decisiones blocking sin resolver (status: open sin evidencia de
+  resolucion).
+- Hay decisiones blocking con plan de resolucion pero sin ejecutar (owner y
+  Resolution Method definidos, pero sin evidencia del resultado).
+- Hay decisiones deferrable sin owner, sin justificacion, sin riesgo aceptado o
+  sin condicion de reactivacion.
 - Se intenta disenar arquitectura sobre suposiciones criticas no verificadas.
 - Las dependencias entre decisiones no estan claras.
 
 ## Corrective Actions
 
+- Ejecutar el plan de resolucion de decisiones blocking pendientes (owner: el
+  asignado en cada decision).
 - Ejecutar investigacion dirigida (owner: Engineering Architect o delegado).
 - Ejecutar prototipo si hay incertidumbre tecnica (owner: especialista de
   dominio).
 - Consultar al usuario para decisiones que requieren input externo.
 - Crear ADR cuando se tome una decision relevante.
+- Completar metadata de decisiones deferrable incompletas (owner,
+  justificacion, riesgo, condicion de reactivacion).
 - Owner de cada accion correctiva: el asignado en el campo Owner de cada
   decision.
 
 ## Evidence Required
 
 - `DECISION_MAP.md` con todas las decisiones registradas.
-- Para decisiones resueltas: evidencia de la resolucion (ADR, resultado de
-  prototipo, documento de investigacion, decision del usuario documentada).
-- Para decisiones con plan de resolucion: owner, metodo y condicion de
-  resolucion definidos.
+- Para decisiones blocking resueltas: evidencia de la resolucion (ADR,
+  resultado de prototipo, documento de investigacion, decision del usuario
+  documentada).
+- Para decisiones deferrable: owner, justificacion, riesgo aceptado y
+  condicion de reactivacion documentados.
+- Un plan de resolucion sin ejecutar no cuenta como evidencia para PASS.
 
 ## Handoff
 
-- **PASS** -> arquitectura/planificacion.
-- **FAIL** -> investigacion, prototipo, consulta o especialista segun la
-  causa de fallo.
+- **PASS** -> arquitectura/planificacion. Todas las blocking estan resueltas
+  con evidencia.
+- **FAIL** -> ejecutar planes de resolucion de decisiones blocking, completar
+  metadata de deferrable, o consultar especialista segun la causa de fallo.
