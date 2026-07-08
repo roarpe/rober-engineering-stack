@@ -29,7 +29,8 @@ QA & Debug Engineer
 
 ## Participants
 
-- Engineering Architect (aprueba entrega).
+- Engineering Architect (recibe handoff y autoriza entrega tras PASS; no puede
+  sobreescribir un FAIL tecnico de QA).
 - Technical Documentation Engineer (verifica documentos actualizados).
 - Especialista de dominio si hay verificaciones industriales especificas.
 
@@ -128,5 +129,10 @@ Contenido obligatorio:
 
 ## Handoff
 
-- **PASS** -> entrega/cierre.
-- **FAIL** -> implementacion, debugging, review o documentacion segun causa.
+- **PASS** -> handoff a Engineering Architect, quien coordina o autoriza la
+  transicion a entrega/cierre.
+- **FAIL** -> implementacion, debugging, review o documentacion segun causa. El
+  workflow permanece bloqueado. Engineering Architect no puede sobreescribir el
+  FAIL.
+- **Desacuerdo** -> el workflow permanece bloqueado hasta resolver mediante
+  nueva evidencia, correccion, aclaracion de requisitos o escalado al usuario.

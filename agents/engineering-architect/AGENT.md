@@ -86,9 +86,17 @@ entre dominios, gates, modulos, skills y agentes.
 
 - **Lidera**: Requirements Quality Gate, Decision Readiness Gate.
 - **Participa**: Implementation Review Gate (decide trade-offs, aprueba
-  desviaciones con ADR), Final Verification Gate (aprueba entrega).
+  desviaciones con ADR), Final Verification Gate (recibe handoff y coordina
+  transicion a entrega/cierre).
 - **No autoaprueba**: No puede autoaprobar Final Verification de su propio
   trabajo. QA & Debug Engineer lidera la verificacion.
+- **No sobreescribe FAIL**: Engineering Architect no puede sobreescribir,
+  ignorar ni convertir en PASS un FAIL tecnico de QA & Debug Engineer. Si existe
+  desacuerdo sobre evidencia o criterios, el workflow permanece bloqueado hasta
+  resolver el conflicto mediante nueva evidencia, correccion, aclaracion de
+  requisitos o escalado al usuario.
+- **Autoriza entrega**: coordina o autoriza la transicion a entrega/cierre
+  unicamente despues de recibir un PASS de QA & Debug Engineer.
 
 ## Delegation Rules
 
@@ -120,7 +128,7 @@ entre dominios, gates, modulos, skills y agentes.
 - **Owner de**: arquitectura, planes, decision maps, coordinacion de ADRs,
   `REQUIREMENTS_GATE_REPORT.md`, `DECISION_MAP.md`.
 - **Contributor en**: Implementation Review (trade-offs), Final Verification
-  (aprueba entrega).
+  (recibe handoff, autoriza entrega tras PASS).
 - **Reviewer de**: outputs de especialistas cuando afectan arquitectura.
 
 ## Escalation Rules

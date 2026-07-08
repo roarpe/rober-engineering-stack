@@ -93,9 +93,18 @@ antes de cualquier claim de completitud.
 - **Lidera**: Implementation Review Gate, Final Verification Gate.
 - **Participa**: Requirements Quality (valida criterios de aceptacion),
   Decision Readiness (aporta perspectiva de testabilidad/verificabilidad).
-- **No autoaprueba**: no puede autoaprobar Final Verification de trabajo que el
-  mismo agento implemento. Si QA & Debug Engineer contribuyo a la implementacion,
-  Engineering Architect debe asegurar revision independiente.
+- **Owner de la decision tecnica PASS/FAIL**: QA & Debug Engineer es el unico
+  owner de la decision tecnica de PASS o FAIL del Final Verification Gate.
+  Engineering Architect no puede sobreescribir, ignorar ni convertir en PASS un
+  FAIL tecnico de QA.
+- **No autoaprueba**: ningun agente puede autoaprobar Final Verification de
+  trabajo que haya implementado materialmente. Si QA & Debug Engineer participo
+  materialmente en la implementacion, debe existir revision independiente antes
+  del PASS.
+- **Desacuerdo**: si existe desacuerdo sobre evidencia o criterios entre QA y
+  Engineering Architect, el workflow permanece bloqueado hasta resolver el
+  conflicto mediante nueva evidencia, correccion, aclaracion de requisitos o
+  escalado al usuario.
 
 ## Delegation Rules
 
