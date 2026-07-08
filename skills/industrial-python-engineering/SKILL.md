@@ -6,18 +6,22 @@ industrial-python-engineering
 
 ## Purpose
 
-Definir estandares de ingenieria Python para sistemas industriales: estructura,
-configuracion, logging, excepciones, typing, testing, comunicaciones,
-persistencia, packaging, despliegue y observabilidad. No es una guia generica
+Disenar la ingenieria de software Python industrial necesaria para producir
+sistemas mantenibles, diagnosticables, testeables, desplegables e integrables
+con OT (PLC, robots, vision, datos). Los estandares (estructura, config,
+logging, excepciones, typing, testing, packaging, observabilidad) son parte
+del diseno de ingenieria, no el proposito completo. No es una guia generica
 de Python; especializa para entornos industriales con requisitos de
-fiabilidad, observabilidad y integracion con PLC, robots, vision y datos.
+fiabilidad, observabilidad, integracion con OT y comportamiento ante fallos
+de subsistemas externos.
 
 ## Activation Triggers
 
 - Hay codigo Python que se ejecuta en entorno industrial (produccion,
   mantenimiento, laboratorio, celula robotizada).
-- Hay necesidad de definir estandares de estructura, config, logging,
-  excepciones, testing u observabilidad para un proyecto Python industrial.
+- Hay necesidad de disenar ingenieria de software Python industrial: estructura,
+  arquitectura de aplicacion, lifecycle, concurrencia, observabilidad, testing,
+  despliegue o comportamiento ante fallos externos.
 - Modulo software-development, data-engineering o computer-vision activo con
   Python como lenguaje principal o secundario.
 - Requirements Quality PASS y Decision Readiness PASS (si aplica).
@@ -27,11 +31,12 @@ fiabilidad, observabilidad y integracion con PLC, robots, vision y datos.
 - El proyecto no involucra Python.
 - El codigo Python es un script desechable sin requisitos de mantenibilidad ni
   produccion.
-- Ya existen estandares Python industriales validados y no han cambiado.
+- Ya existe diseno de ingenieria Python industrial validado y no ha cambiado.
 - Se necesita arquitectura de comunicaciones (usar
   `industrial-communications-design`).
 - Se necesita integracion de vision/IA (usar `vision-ai-integration`).
 - Se necesita arquitectura PLC (usar `plc-software-architecture`).
+- Se necesita arquitectura robotica interna (usar `robotics-cell-integration`).
 
 ## Primary Owner
 
@@ -44,7 +49,7 @@ Software Engineer
 - Industrial Automation Engineer (interfaces con PLC/comunicaciones
   industriales).
 - Robotics Engineer (interfaces con robot).
-- Technical Documentation Engineer (documentacion de estandares).
+- Technical Documentation Engineer (documentacion de ingenieria).
 
 ## Required Inputs
 
@@ -54,37 +59,57 @@ Software Engineer
 - Interfaces con PLC, robot, vision y datos.
 - ADRs aplicables.
 - Estandares externos aplicables (PEP 8, PEP 484, etc.) cuando sean relevantes.
+- Restricciones de despliegue, entornos y operacion.
 
 ## Procedure
 
 1. Confirmar precondiciones: RQ PASS y DR PASS (si aplica).
-2. Definir estructura del proyecto Python (layout, modulos, paquetes,
+2. Definir objetivo y contexto del software Python en el sistema industrial.
+3. Definir arquitectura de aplicacion (capas, componentes, responsabilidades,
+   dependencias internas).
+4. Definir estructura del proyecto Python (layout, modulos, paquetes,
    separacion de responsabilidades).
-3. Definir gestion de configuracion (ficheros, variables de entorno, perfiles,
-   secretos, configuracion por entorno).
-4. Definir estandares de logging (niveles, formato, structured logging,
-   correlacion, rotacion, retencion).
-5. Definir estrategia de excepciones (jerarquia, captura, propagacion,
-  reporte, no silenciar).
-6. Definir estandares de typing (mypy, strictness, type hints en APIs
-   publicas).
-7. Definir estrategia de testing (unitarios, integracion, fixtures, cobertura
-   minima, pruebas de comunicaciones, pruebas de fallo).
-8. Definir patrones de comunicaciones industriales desde Python (OPC UA,
-  MQTT, Modbus, REST) a nivel de cliente, no de contrato (el contrato lo
-  define `industrial-communications-design`).
-9. Definir persistencia (bases de datos, ficheros, caches, migraciones,
-  retencion).
-10. Definir packaging y despliegue (entornos virtuales, contenedores,
+5. Definir componentes y responsabilidades (que hace cada componente, que no
+   hace, fronteras).
+6. Definir contratos externos (que interfaces expone y consume el software
+   Python con PLC, robot, vision, datos) a nivel de aplicacion, no de
+   protocolo (el contrato de comunicacion lo define
+   `industrial-communications-design`).
+7. Definir gestion de configuracion y secretos (ficheros, variables de
+   entorno, perfiles, secretos, configuracion por entorno).
+8. Definir estrategia de errores y excepciones (jerarquia, captura,
+   propagacion, reporte, no silenciar).
+9. Definir logging (niveles, formato, structured logging, correlacion,
+   rotacion, retencion).
+10. Definir lifecycle de la aplicacion: startup, shutdown, cleanup, manejo de
+    senales.
+11. Definir concurrencia y async cuando aplique (threads, asyncio, locks,
+    queues, race conditions, resource limits).
+12. Definir tipos y validacion de datos (type hints, mypy, pydantic/schemas,
+    validacion de input/output).
+13. Definir serializacion (JSON, protobuf, pickle, formatos binarios cuando
+    aplique).
+14. Definir patrones de comunicaciones industriales desde Python (OPC UA,
+    MQTT, Modbus, REST) a nivel de cliente, no de contrato.
+15. Definir persistencia (bases de datos, ficheros, caches, migraciones,
+    retencion).
+16. Definir dependencias y packaging (entornos virtuales, contenedores,
     dependencias, versionado, reproducibilidad).
-11. Definir observabilidad (metricas, traces, health checks, alertas,
+17. Definir entornos (desarrollo, testing, staging, produccion; diferencias,
+    variables, configuracion).
+18. Definir estrategia de testing (unitarios, integracion, fixtures, cobertura
+    minima, pruebas de comunicaciones, pruebas de fallo).
+19. Definir simulacion (mocks de PLC, robot, vision; simulacion de fallos;
+    entornos de test reproducibles).
+20. Definir observabilidad (metricas, traces, health checks, alertas,
     dashboards).
-12. Definir comportamiento ante fallos externos (PLC no responde, robot en
-    error, vision no disponible, red caida, datos invalidos).
-13. Definir graceful shutdown y manejo de senales.
-14. Definir estrategia de compatibilidad y versionado de APIs Python.
-15. Identificar decisiones dificiles de revertir y proponer ADRs.
-16. Producir el artefacto de salida.
+21. Definir despliegue (estrategia, pipeline, rollback cuando aplique,
+    zero-downtime cuando aplique).
+22. Definir comportamiento ante fallos externos (PLC no responde, robot en
+    error, vision no disponible, red caida, datos invalidos, stale data).
+23. Definir riesgos y decisiones abiertas.
+24. Identificar decisiones dificiles de revertir y proponer ADRs.
+25. Producir el artefacto de salida.
 
 ### Comportamiento ante fallos externos
 
@@ -94,29 +119,41 @@ Para cada interfaz externa (PLC, robot, vision, datos, red):
 - Reconexion: estrategia, backoff, max retries, circuit breaker cuando
   aplique.
 - Datos invalidos: validacion, rechazo, log, fallback.
+- Stale data: deteccion de datos obsoletos, criterio de frescura, que hacer
+  cuando los datos no se actualizan pero la conexion sigue activa.
 - Servicio no disponible: modo degradado, reporte, alerta.
 - Graceful shutdown: cleanup de recursos, notificacion a subsistemas.
 
 ## Required Outputs
 
-Artefacto: `INDUSTRIAL_PYTHON_STANDARDS.md`
+Artefacto: `INDUSTRIAL_PYTHON_ENGINEERING.md`
 
 Contenido obligatorio:
 
+- Objetivo y contexto.
+- Arquitectura de aplicacion.
 - Estructura del proyecto.
-- Gestion de configuracion.
-- Estandares de logging.
-- Estrategia de excepciones.
-- Estandares de typing.
-- Estrategia de testing.
+- Componentes y responsabilidades.
+- Contratos externos (a nivel de aplicacion, no de protocolo).
+- Configuracion y secretos.
+- Errores y excepciones.
+- Logging.
+- Lifecycle: startup, shutdown, cleanup.
+- Concurrencia/async cuando aplique.
+- Tipos y validacion de datos.
+- Serializacion.
 - Patrones de comunicaciones industriales (cliente, no contrato).
 - Persistencia.
-- Packaging y despliegue.
+- Dependencias y packaging.
+- Entornos.
+- Testing.
+- Simulacion.
 - Observabilidad.
-- Comportamiento ante fallos externos por interfaz.
-- Graceful shutdown y manejo de senales.
-- Versionado de APIs Python.
-- ADRs propuestos.
+- Despliegue y rollback cuando aplique.
+- Comportamiento ante fallos externos por interfaz (incluyendo stale data).
+- Riesgos.
+- Decisiones abiertas.
+- ADRs propuestos cuando aplique.
 
 ## Consumer
 
@@ -125,19 +162,18 @@ Engineering Architect (coherencia transversal), Software Engineer
 
 ## Stop Condition
 
-La skill se detiene cuando existen estandares Python suficientes para
-planificacion, implementacion y verificacion sin ambiguedades criticas. No es
-necesario que cada modulo tenga su codigo implementado ni que cada test este
-escrito.
+La skill se detiene cuando existe diseno de ingenieria Python suficiente para
+permitir implementacion, testing, despliegue y diagnostico verificables. No
+debe continuar hasta disenar cada funcion o clase.
 
 ## Gates Interaction
 
 - **Precondicion**: Requirements Quality PASS. Decision Readiness PASS (si
   aplica).
-- **Despues de**: los estandares se entregan a planificacion e
+- **Despues de**: el diseno de ingenieria se entrega a planificacion e
   implementacion. Implementation Review revisara la implementacion posterior.
 - **No ejecuta**: Implementation Review, Final Verification ni ningun gate.
-- **No reemplaza**: ADRs. Las decisiones de estandares dificiles de revertir
+- **No reemplaza**: ADRs. Las decisiones de ingenieria dificiles de revertir
   se proponen como ADR.
 
 ## Agent Interaction
@@ -149,22 +185,27 @@ escrito.
 
 ## Evidence Required
 
-- `INDUSTRIAL_PYTHON_STANDARDS.md` con todos los campos obligatorios.
-- Comportamiento ante fallos externos definido por interfaz.
-- Estandares de logging y observabilidad definidos.
-- Estrategia de testing definida.
+- `INDUSTRIAL_PYTHON_ENGINEERING.md` con todos los campos obligatorios.
+- Comportamiento ante fallos externos definido por interfaz (incluyendo stale
+  data).
+- Arquitectura de aplicacion, lifecycle y observabilidad definidos.
+- Estrategia de testing y simulacion definida.
 
 ## Failure Modes
 
 - Ser una guia generica de Python sin especializacion industrial.
-- No definir comportamiento ante fallos externos (PLC, robot, vision, red).
+- Quedarse solo en estandares sin disenar arquitectura de aplicacion, lifecycle
+  y comportamiento ante fallos.
+- No definir comportamiento ante fallos externos (PLC, robot, vision, red,
+  stale data).
 - Duplicar contratos de comunicacion (responsabilidad de
   `industrial-communications-design`).
 - Duplicar integracion de vision/IA (responsabilidad de
   `vision-ai-integration`).
-- No definir graceful shutdown.
+- Duplicar arquitectura PLC o robotica interna.
+- No definir lifecycle, startup, shutdown ni cleanup.
 - No definir observabilidad ni alertas.
-- Mezclar estandares con implementacion completa.
+- Mezclar diseno de ingenieria con implementacion completa.
 - Asumir entorno perfecto sin fallos de red ni servicios caidos.
 
 ## Escalation Rules
@@ -175,14 +216,20 @@ escrito.
 - Contrato de comunicaciones -> escalar a `industrial-communications-design`.
 - Integracion de vision/IA -> escalar a `vision-ai-integration`.
 - Testabilidad insuficiente -> QA & Debug Engineer.
-- Decision de estandar dificil de revertir -> proponer ADR.
+- Arquitectura robotica interna -> escalar a `robotics-cell-integration`.
+- Decision de ingenieria dificil de revertir -> proponer ADR.
 
 ## Done Criteria
 
-- `INDUSTRIAL_PYTHON_STANDARDS.md` completo con todos los campos obligatorios.
-- Comportamiento ante fallos externos definido por interfaz.
+- `INDUSTRIAL_PYTHON_ENGINEERING.md` completo con todos los campos obligatorios.
+- Arquitectura de aplicacion, componentes y responsabilidades definidos.
+- Lifecycle (startup, shutdown, cleanup) definido.
+- Comportamiento ante fallos externos definido por interfaz (incluyendo stale
+  data).
 - Estandares de estructura, config, logging, excepciones, typing, testing,
-  observabilidad y despliegue definidos.
-- Graceful shutdown definido.
-- No duplica contratos de comunicacion ni integracion de vision/IA.
+  observabilidad y despliegue integrados en el diseno de ingenieria.
+- Concurrencia/async definido cuando aplique.
+- Simulacion y testing definidos.
+- No duplica contratos de comunicacion, integracion de vision/IA, arquitectura
+  PLC ni arquitectura robotica.
 - Artefacto entregado a Software Engineer para planificacion.
