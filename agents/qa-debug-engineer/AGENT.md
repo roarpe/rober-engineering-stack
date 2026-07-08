@@ -80,10 +80,9 @@ antes de cualquier claim de completitud.
 
 - Puede recomendar: `systematic-debugging`, `test-driven-development`,
   `code-review`, `verification-before-completion`.
-- Puede recomendar `machine-diagnostics` (skill futura) para diagnostico
-  industrial.
-- Puede recomendar `industrial-project-verification` (skill futura) para
-  verificaciones industriales especificas.
+- Puede recomendar `machine-diagnostics` para diagnostico industrial.
+- Puede recomendar `industrial-project-verification` para verificaciones
+  industriales especificas.
 - No activa skills indiscriminadamente. Toda skill con trigger, input, output,
   consumer y stop condition.
 - No puede usar skills para saltarse gates.

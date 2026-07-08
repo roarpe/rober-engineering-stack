@@ -72,7 +72,7 @@ industriales.
 
 - Puede recomendar: `industrial-project-discovery`, `plc-software-architecture`,
   `industrial-communications-design`, `machine-diagnostics`,
-  `industrial-project-verification` (skills futuras).
+  `industrial-project-verification`.
 - Puede recomendar `systematic-debugging` para fallos.
 - Puede recomendar ADRs para decisiones de arquitectura.
 - No activa skills indiscriminadamente. Toda skill con trigger, input, output,

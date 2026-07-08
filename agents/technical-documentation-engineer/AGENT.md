@@ -73,8 +73,8 @@ aprobadas, no inventar comportamiento no verificado.
 ## Skills Policy
 
 - Puede recomendar `architecture-decision-records` para formato de ADRs.
-- Puede recomendar `industrial-documentation` (skill futura) para documentacion
-  industrial especifica.
+- Puede recomendar `industrial-documentation` para documentacion industrial
+  especifica.
 - No activa skills indiscriminadamente. Toda skill con trigger, input, output,
   consumer y stop condition.
 - No puede usar skills para saltarse gates.

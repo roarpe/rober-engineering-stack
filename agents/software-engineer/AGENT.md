@@ -71,8 +71,8 @@ observabilidad.
 - Puede recomendar: `writing-plans`, `systematic-debugging`,
   `test-driven-development`, `api-design`, `architecture-decision-records`,
   `code-review`.
-- Puede recomendar `industrial-python-engineering` (skill futura) para
-  estandares Python industriales.
+- Puede recomendar `industrial-python-engineering` para ingenieria Python
+  industrial.
 - No activa skills indiscriminadamente. Toda skill con trigger, input, output,
   consumer y stop condition.
 - No puede usar skills para saltarse gates.
