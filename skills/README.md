@@ -37,8 +37,8 @@ requiere.
 | 5 | `vision-ai-integration` | Implementada (Fase 7B) | Integracion vision/IA |
 | 6 | `industrial-python-engineering` | Implementada (Fase 7C) | Estándares Python industriales |
 | 7 | `machine-diagnostics` | Implementada (Fase 7C) | Diagnostico industrial |
-| 8 | `industrial-documentation` | Pendiente | Documentacion industrial |
-| 9 | `industrial-project-verification` | Pendiente | Verificacion industrial |
+| 8 | `industrial-documentation` | Implementada (Fase 7D) | Documentacion industrial |
+| 9 | `industrial-project-verification` | Implementada (Fase 7D) | Verificacion industrial |
 
 ## Referencias
 
