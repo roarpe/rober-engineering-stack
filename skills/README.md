@@ -35,8 +35,8 @@ requiere.
 | 3 | `industrial-communications-design` | Implementada (Fase 7B) | Comunicaciones industriales |
 | 4 | `robotics-cell-integration` | Implementada (Fase 7B) | Integracion robotica |
 | 5 | `vision-ai-integration` | Implementada (Fase 7B) | Integracion vision/IA |
-| 6 | `industrial-python-engineering` | Pendiente | Estándares Python industriales |
-| 7 | `machine-diagnostics` | Pendiente | Diagnostico industrial |
+| 6 | `industrial-python-engineering` | Implementada (Fase 7C) | Estándares Python industriales |
+| 7 | `machine-diagnostics` | Implementada (Fase 7C) | Diagnostico industrial |
 | 8 | `industrial-documentation` | Pendiente | Documentacion industrial |
 | 9 | `industrial-project-verification` | Pendiente | Verificacion industrial |
 
