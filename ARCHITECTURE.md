@@ -1,8 +1,8 @@
 # ROBER ENGINEERING STACK v1.0 - Architecture
 
-Fecha: 2026-07-07  
-Fase: 2 - Diseno de arquitectura  
-Estado: arquitectura propuesta, sin instalacion ni implementacion de agentes/skills
+Fecha: 2026-07-07 (Fase 2); actualizado 2026-07-08 (Fase 9A)
+Fase: 9A - Documentacion reconciliada tras implementacion de Fases 3-8
+Estado: arquitectura implementada con 4 gates, 6 agentes, 9 skills y 8 modulos
 
 ## 1. Fuentes de verdad
 
@@ -393,6 +393,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
+- Custom skills: `industrial-python-engineering`, `industrial-communications-design`, `vision-ai-integration`, `machine-diagnostics`, `industrial-documentation`, `industrial-project-verification`.
 - `writing-plans`
 - `systematic-debugging`
 - `test-driven-development`
@@ -412,7 +413,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
-- Custom futuras: `industrial-project-discovery`, `plc-software-architecture`, `industrial-communications-design`, `machine-diagnostics`, `industrial-project-verification`.
+- Custom skills: `industrial-project-discovery`, `plc-software-architecture`, `industrial-communications-design`, `machine-diagnostics`, `industrial-documentation`, `industrial-project-verification`.
 - `systematic-debugging` para fallos.
 - ADRs para decisiones de arquitectura.
 
@@ -428,7 +429,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
-- Custom futuras: `robotics-cell-integration`, `industrial-communications-design`, `vision-ai-integration`, `industrial-project-verification`.
+- Custom skills: `robotics-cell-integration`, `industrial-communications-design`, `vision-ai-integration`, `machine-diagnostics`, `industrial-documentation`, `industrial-project-verification`.
 - `prototype` para incertidumbre de estado/flujo.
 - ADRs.
 
@@ -444,6 +445,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
+- Custom skills: `vision-ai-integration`, `industrial-python-engineering`, `industrial-communications-design`, `machine-diagnostics`, `industrial-documentation`, `industrial-project-verification`.
 - `agentic-engineering`
 - `agent-harness-construction`
 - `agent-eval` experimental
@@ -462,7 +464,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
-- Custom futuras: `industrial-project-discovery`, `robotics-cell-integration`, `vision-ai-integration`, `industrial-project-verification`.
+- Custom skills: `vision-ai-integration`, `robotics-cell-integration`, `industrial-python-engineering`, `industrial-communications-design`, `machine-diagnostics`, `industrial-project-verification`.
 - `prototype` si se necesita validar pipeline o UI.
 - `systematic-debugging` para fallos de integracion.
 
@@ -478,8 +480,8 @@ Activar cuando:
 
 Skills bajo demanda:
 
+- Custom skills: `industrial-python-engineering`, `industrial-communications-design`, `machine-diagnostics`, `industrial-documentation`, `industrial-project-verification`.
 - `api-design` si hay contratos de datos/API.
-- `industrial-communications-design` futura.
 - `writing-plans`
 - ADRs.
 
@@ -495,6 +497,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
+- Custom skills: `industrial-python-engineering` cuando Python aplique, `industrial-communications-design`, `machine-diagnostics`, `industrial-documentation`, `industrial-project-verification`.
 - `api-design`
 - `prototype` para exploracion UI.
 - `test-driven-development`
@@ -560,7 +563,7 @@ No usar biblioteca opcional cuando:
 
 ## 8. Custom Industrial Skills
 
-Las 9 custom skills industriales seran la capa 4. En esta fase solo se define su ubicacion y responsabilidad.
+Las 9 custom skills industriales conforman la capa 4. Estan implementadas (Fases 7A-7D) con contratos en `skills/*/SKILL.md`.
 
 ### 8.1 industrial-project-discovery
 
@@ -601,7 +604,7 @@ Rol:
 
 Encaje:
 
-- Modulos industrial-automation, robotics, data-engineering.
+- Modulos industrial-automation, robotics, artificial-intelligence, computer-vision, data-engineering, web-development, software-development.
 
 No duplicar:
 
@@ -615,7 +618,7 @@ Rol:
 
 Encaje:
 
-- Modulo robotics.
+- Modulos robotics, computer-vision.
 
 No duplicar:
 
@@ -629,7 +632,7 @@ Rol:
 
 Encaje:
 
-- Modulos computer-vision, robotics, industrial-automation, software-development.
+- Modulos computer-vision, robotics, artificial-intelligence, software-development.
 
 No duplicar:
 
@@ -639,11 +642,11 @@ No duplicar:
 
 Rol:
 
-- Estandares Python industriales: estructura, config, logging, excepciones, typing, testing, comunicaciones, persistencia, packaging, despliegue, observabilidad.
+- Ingenieria de software Python industrial: arquitectura de aplicacion, estructura, config, logging, excepciones, typing, testing, packaging, despliegue, observabilidad, concurrencia, serializacion, simulacion, rollback, stale data y comportamiento ante fallos de subsistemas externos. Los estandares son parte del diseno, no el proposito completo.
 
 Encaje:
 
-- Modulos software-development, data-engineering, computer-vision.
+- Modulos software-development, artificial-intelligence, computer-vision, data-engineering, web-development.
 
 No duplicar:
 
@@ -1063,19 +1066,22 @@ Checklist:
 - Gates con responsabilidades separadas: PASS. Requirements, decisions, implementation review y final verification tienen inputs/outputs distintos.
 - Modulos activables: PASS. Cada modulo define cuando activar y cuando no.
 - Agentes con limites claros: PASS. Se definen misiones y limites sin crear archivos definitivos.
-- Custom industrial skills ubicadas: PASS. Se asignan a capa 4 y a modulos/gates sin implementarlas.
+- Custom industrial skills ubicadas: PASS. Se asignan a capa 4 y a modulos/gates. Implementadas en Fases 7A-7D.
 - Politica de precedencia definida: PASS.
 - Workflows proporcionales: PASS. Pequeno, mediano y grande no ejecutan el mismo flujo completo.
 
 ## 16. Riesgos y decisiones pendientes
 
+> Nota (Fase 9A): Esta seccion refleja el estado al final de Fase 2. Los
+> riesgos marcados como resueltos se actualizan a continuacion.
+
 Riesgos:
 
 - `gh` sigue sin autenticacion valida; flujos PR/remoto deben esperar.
-- Repo sin commits; worktrees y branch finishing no deben activarse aun.
+- ~~Repo sin commits; worktrees y branch finishing no deben activarse aun.~~ Resuelto: el repo tiene historial de commits desde Fase 3.
 - Python/Node globales no son fiables; futuras herramientas deben documentar runtimes.
-- Decision Readiness Gate aun debe implementarse como artefacto propio en Fase 5.
-- Falta definir formato exacto de ADR, templates y rutas finales.
+- ~~Decision Readiness Gate aun debe implementarse como artefacto propio en Fase 5.~~ Resuelto: implementado en Fase 5 con `gates/decision-readiness/GATE.md`.
+- Falta definir formato exacto de ADR, templates y rutas finales. Parcialmente resuelto: ADRs se usan via `architecture-decision-records`; templates no se han creado (pendiente).
 
 Decisiones pendientes:
 
@@ -1085,6 +1091,11 @@ Decisiones pendientes:
 - Si `continuous-learning-v2` tendra piloto controlado en Fase 12.
 
 ## 17. Estado final de Fase 2
+
+> Nota (Fase 9A): Esta seccion preserva el estado historico al final de Fase 2.
+> El estado actual del stack es: 4 gates, 6 agentes, 9 skills y 8 modulos
+> implementados (Fases 3-8). Ver `README.md` y `STACK_COHERENCE_AUDIT.md`
+> para el estado vigente.
 
 Archivos creados:
 

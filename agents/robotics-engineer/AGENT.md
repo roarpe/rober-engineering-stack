@@ -71,8 +71,7 @@ robot-PLC y recuperacion de errores.
 ## Skills Policy
 
 - Puede recomendar: `robotics-cell-integration`,
-  `industrial-communications-design`, `industrial-project-verification` (skills
-  futuras).
+  `industrial-communications-design`, `industrial-project-verification`.
 - Puede recomendar `prototype` para incertidumbre de estado/flujo.
 - Puede recomendar ADRs para decisiones de integracion.
 - No activa skills indiscriminadamente. Toda skill con trigger, input, output,
