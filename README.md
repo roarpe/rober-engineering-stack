@@ -70,7 +70,7 @@ Artefactos principales:
 5. Fase 4 - Creacion de `AGENTS.md`.
 6. Fase 5 - Creacion de Engineering Gates.
 7. Fase 6 - Creacion de agentes.
-8. Fase 7 - Creacion de las 8 custom industrial skills.
+8. Fase 7 - Creacion de las 9 custom industrial skills.
 9. Fase 8 - Creacion de modulos.
 10. Fase 9 - Creacion de templates.
 11. Fase 10 - Testing del sistema.

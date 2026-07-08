@@ -338,3 +338,23 @@ Siguiente fase propuesta:
 - Fase 2 - Diseno de arquitectura.
 
 Detener aqui y esperar autorizacion antes de continuar.
+
+---
+
+## Evolucion arquitectonica posterior a la auditoria
+
+Esta seccion documenta decisiones arquitectonicas posteriores a la Fase 1. No
+altera las conclusiones historicas de la auditoria original.
+
+- La auditoria original (Fase 1) evaluo la arquitectura inicial de 8 Custom
+  Industrial Skills.
+- Durante la Fase 7B se incorporo oficialmente una novena skill:
+  `vision-ai-integration`, con su contrato completo en
+  `skills/vision-ai-integration/SKILL.md`.
+- `robot-cell-integration` fue renombrada oficialmente a
+  `robotics-cell-integration` durante la Fase 7B. El nombre canonico es
+  `robotics-cell-integration`.
+- Estas son evoluciones arquitectonicas posteriores, no hallazgos retroactivos
+  de la auditoria original.
+- `vision-ai-integration` debera validarse mediante las fases posteriores de
+  testing (Fase 10) y piloto (Fase 11) igual que el resto del stack.

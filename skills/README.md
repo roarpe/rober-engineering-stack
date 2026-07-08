@@ -26,18 +26,19 @@ requiere.
 - **Modulos**: determinan que skills son relevantes para el proyecto. Un modulo
   activo habilita skills de su dominio.
 
-## Skills previstas (8)
+## Skills previstas (9)
 
 | # | Skill | Estado | Dominio |
 |---|---|---|---|
 | 1 | `industrial-project-discovery` | Implementada (Fase 7A) | Discovery pre-requisitos |
 | 2 | `plc-software-architecture` | Implementada (Fase 7A) | Arquitectura PLC |
-| 3 | `industrial-communications-design` | Pendiente | Comunicaciones industriales |
-| 4 | `robot-cell-integration` | Pendiente | Integracion robotica |
-| 5 | `industrial-python-engineering` | Pendiente | Estándares Python industriales |
-| 6 | `machine-diagnostics` | Pendiente | Diagnostico industrial |
-| 7 | `industrial-documentation` | Pendiente | Documentacion industrial |
-| 8 | `industrial-project-verification` | Pendiente | Verificacion industrial |
+| 3 | `industrial-communications-design` | Implementada (Fase 7B) | Comunicaciones industriales |
+| 4 | `robotics-cell-integration` | Implementada (Fase 7B) | Integracion robotica |
+| 5 | `vision-ai-integration` | Implementada (Fase 7B) | Integracion vision/IA |
+| 6 | `industrial-python-engineering` | Pendiente | Estándares Python industriales |
+| 7 | `machine-diagnostics` | Pendiente | Diagnostico industrial |
+| 8 | `industrial-documentation` | Pendiente | Documentacion industrial |
+| 9 | `industrial-project-verification` | Pendiente | Verificacion industrial |
 
 ## Referencias
 

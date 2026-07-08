@@ -70,7 +70,7 @@ robot-PLC y recuperacion de errores.
 
 ## Skills Policy
 
-- Puede recomendar: `robot-cell-integration`,
+- Puede recomendar: `robotics-cell-integration`,
   `industrial-communications-design`, `industrial-project-verification` (skills
   futuras).
 - Puede recomendar `prototype` para incertidumbre de estado/flujo.

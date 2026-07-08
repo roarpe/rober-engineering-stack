@@ -16,7 +16,7 @@ Restricciones heredadas:
 - No modificar configuracion global en esta fase.
 - No instalar skills.
 - No crear aun agentes definitivos.
-- No implementar aun las 8 custom industrial skills.
+- No implementar aun las 9 custom industrial skills.
 - Mantener el Global Core pequeno.
 - Evitar duplicidades entre discovery, requirements gate, planificacion, ADRs, review y verification.
 
@@ -428,7 +428,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
-- Custom futuras: `robot-cell-integration`, `industrial-communications-design`, `industrial-project-verification`.
+- Custom futuras: `robotics-cell-integration`, `industrial-communications-design`, `vision-ai-integration`, `industrial-project-verification`.
 - `prototype` para incertidumbre de estado/flujo.
 - ADRs.
 
@@ -462,7 +462,7 @@ Activar cuando:
 
 Skills bajo demanda:
 
-- Custom futuras: `industrial-project-discovery`, `robot-cell-integration`, `industrial-project-verification`.
+- Custom futuras: `industrial-project-discovery`, `robotics-cell-integration`, `vision-ai-integration`, `industrial-project-verification`.
 - `prototype` si se necesita validar pipeline o UI.
 - `systematic-debugging` para fallos de integracion.
 
@@ -560,7 +560,7 @@ No usar biblioteca opcional cuando:
 
 ## 8. Custom Industrial Skills
 
-Las 8 custom skills industriales seran la capa 4. En esta fase solo se define su ubicacion y responsabilidad.
+Las 9 custom skills industriales seran la capa 4. En esta fase solo se define su ubicacion y responsabilidad.
 
 ### 8.1 industrial-project-discovery
 
@@ -607,7 +607,7 @@ No duplicar:
 
 - No debe ser API design generico; debe cubrir tiempos, watchdogs, reconexion, productores/consumidores y fallos industriales.
 
-### 8.4 robot-cell-integration
+### 8.4 robotics-cell-integration
 
 Rol:
 
@@ -621,7 +621,21 @@ No duplicar:
 
 - No debe disenar PLC interno salvo contrato/secuencia de integracion.
 
-### 8.5 industrial-python-engineering
+### 8.5 vision-ai-integration
+
+Rol:
+
+- Integrar vision artificial o IA en sistema industrial: trigger, resultado, confianza, fallback, degradado, trazabilidad, versionado y verificacion.
+
+Encaje:
+
+- Modulos computer-vision, robotics, industrial-automation, software-development.
+
+No duplicar:
+
+- No debe entrenar modelos ni seleccionarlos sin evidencia; define el contrato de integracion, no el modelo.
+
+### 8.6 industrial-python-engineering
 
 Rol:
 
@@ -635,7 +649,7 @@ No duplicar:
 
 - No reemplaza `api-design`; lo complementa si hay API.
 
-### 8.6 machine-diagnostics
+### 8.7 machine-diagnostics
 
 Rol:
 
@@ -649,7 +663,7 @@ No duplicar:
 
 - No reemplaza `systematic-debugging`; lo especializa para maquinas/senales/proceso.
 
-### 8.7 industrial-documentation
+### 8.8 industrial-documentation
 
 Rol:
 
@@ -663,7 +677,7 @@ No duplicar:
 
 - No reemplaza herramientas de documentos/PDF; define contenido, estructura y criterios.
 
-### 8.8 industrial-project-verification
+### 8.9 industrial-project-verification
 
 Rol:
 
