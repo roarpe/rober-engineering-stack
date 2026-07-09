@@ -161,6 +161,13 @@ No todos los pasos aplican a todos los proyectos. La proporcionalidad decide.
 ├── SKILLS_AUDIT.md              # Auditoria de skills (Fase 1)
 ├── STACK_COHERENCE_AUDIT.md     # Auditoria de coherencia (Fase 7F)
 ├── STACK_OPERATIONAL_VALIDATION.md  # Validacion operacional (Fase 9B)
+├── RELEASE_READINESS.md         # Evaluacion de release readiness (Fase 10)
+├── PILOT_PROJECT_PROPOSAL.md    # Propuesta del piloto (Fase 11A)
+├── REQUIREMENTS_GATE_REPORT.md  # Requirements Quality Gate del piloto
+├── INDUSTRIAL_COMMUNICATIONS_DESIGN.md  # Diseno de interfaz OT-pipeline
+├── MACHINE_DIAGNOSTICS.md       # Taxonomia de diagnostico del piloto
+├── INDUSTRIAL_PYTHON_ENGINEERING.md     # Diseno Python del piloto
+├── IMPLEMENTATION_REVIEW.md     # Implementation Review Gate del piloto
 ├── agents/                      # 6 Specialized Agents
 │   ├── README.md
 │   ├── engineering-architect/AGENT.md
@@ -196,6 +203,28 @@ No todos los pasos aplican a todos los proyectos. La proporcionalidad decide.
 │   ├── machine-diagnostics/SKILL.md
 │   ├── industrial-documentation/SKILL.md
 │   └── industrial-project-verification/SKILL.md
+├── pilot/                       # Implementacion del piloto (Fase 11B)
+│   ├── __init__.py
+│   ├── cli.py
+│   ├── diagnostics.py
+│   ├── exceptions.py
+│   ├── ingestion.py
+│   ├── models.py
+│   ├── persistence.py
+│   ├── telemetry_source.py
+│   ├── validator.py
+│   ├── watchdog.py
+│   └── utils/
+│       ├── __init__.py
+│       └── clock.py
+├── tests/                       # Tests del piloto (68 casos)
+│   ├── __init__.py
+│   ├── test_telemetry_source.py
+│   ├── test_ingestion_valid.py
+│   ├── test_ingestion_invalid.py
+│   ├── test_diagnostics_thresholds.py
+│   ├── test_diagnostics_no_alarm.py
+│   └── test_cli_end_to_end.py
 └── docs/                        # Documentacion complementaria
     ├── README.md
     └── decisions/README.md
@@ -213,15 +242,25 @@ Fases completadas:
 - Fase 5: creacion de Engineering Gates (4 gates).
 - Fase 6: creacion de Specialized Agents (6 agentes).
 - Fase 7: creacion de Custom Industrial Skills (9 skills).
+- Fase 8: creacion de Project Modules (8 modulos).
+- Fase 9: reconciliacion y validacion operacional.
+- Fase 10: sincronizacion de contratos y release readiness.
+
+Fase 11 -- Proyecto piloto: *Industrial Machine Telemetry Ingestion &
+Diagnostics Pipeline*. En curso.
+
+- Fase 11A -- Discovery & Pilot Proposal: completada.
+- Fase 11B -- Requirements & Technical Design: completada.
+- Fase 11C -- Implementation & Tests: completada (68 tests passing).
+- Fase 11D -- Implementation Review: completada (PASS).
+- Fase 11E -- Final Verification: pendiente.
+- Fase 11F -- Pilot Closure & Lessons Learned: pendiente.
+
+Estado actual: Implementation Review PASS -- Final Verification pendiente.
 
 Fases pendientes:
 
-- Fase 11: proyecto piloto.
 - Fase 12: evaluacion y mejora.
-
-> Nota: Fases 8-10 completadas. Fase 8 creo los 8 Project Modules. Fase 9A
-> reconcilio la documentacion. Fase 9B valido operacionalmente el stack. Fase
-> 10 sincronizo contratos y evaluo release readiness.
 
 ## Como empezar a explorar
 
@@ -233,6 +272,10 @@ Fases pendientes:
 5. [skills/README.md](skills/README.md) -- Custom Industrial Skills.
 6. [modules/README.md](modules/README.md) -- Project Modules.
 7. [SKILLS_AUDIT.md](SKILLS_AUDIT.md) -- auditoria historica de skills.
+8. [PILOT_PROJECT_PROPOSAL.md](PILOT_PROJECT_PROPOSAL.md) -- propuesta del
+   piloto.
+9. [IMPLEMENTATION_REVIEW.md](IMPLEMENTATION_REVIEW.md) -- Implementation
+   Review Gate del piloto.
 
 ## Politica de estructura progresiva
 
