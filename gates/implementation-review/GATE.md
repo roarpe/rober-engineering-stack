@@ -75,7 +75,29 @@ QA & Debug Engineer
      proporcional.
    Clasificar gaps de evidencia segun impacto. Justificar explicitamente
    cualquier path relevante sin test directo.
-5. Para cada hallazgo, registrar:
+5. Construir o verificar una matriz de trazabilidad contractual
+   proporcional: identificar los claims contractuales relevantes desde los
+   contratos fuente (requirements, specs, disenos aprobados) y comprobar
+   que cada claim tiene evidencia de verificacion identificable. Para cada
+   claim registrar:
+   - Referencia al contrato fuente (artefacto, seccion o identificador).
+   - Claim contractual (descripcion breve o referencia).
+   - Evidencia de verificacion (test, comando, inspeccion u otra evidencia
+     objetiva y reproducible).
+   - Resultado: VERIFIED, GAP, N/A (con justificacion) o BLOCKED.
+   - Notas o justificacion de ausencia cuando aplique.
+   La matriz es proporcional: claims pueden agruparse cuando comparten
+   comportamiento y evidencia. No exige una fila por linea contractual, una
+   por funcion, ni cobertura exhaustiva de internals. Los claims relevantes
+   son aquellos que afectan criterios de aceptacion, comportamiento
+   externamente visible, contratos de interfaz/datos, validacion,
+   persistencia, diagnosticos, recuperacion, manejo de errores, integracion
+   u otro comportamiento contractualmente requerido. No incluye rationale,
+   ejemplos, notas de implementacion no normativas ni metadata sin impacto
+   verificable. La evidencia debe ser objetiva. No se acepta "implementado"
+   como evidencia suficiente. No se acepta "tests pass" sin identificar que
+   evidencia verifica el claim.
+6. Para cada hallazgo, registrar:
    - Finding ID.
    - Severity: CRITICAL, MAJOR, MINOR u OBSERVATION.
    - Axis: SPEC o STANDARDS.
@@ -84,8 +106,8 @@ QA & Debug Engineer
    - Required Action (accion concreta para resolver).
    - Owner (responsable de la correccion).
    - Status (open/resolved/waived).
-6. Verificar que no hay desviaciones arquitectonicas importantes sin ADR.
-7. Producir el artefacto de salida con la decision PASS o FAIL.
+7. Verificar que no hay desviaciones arquitectonicas importantes sin ADR.
+8. Producir el artefacto de salida con la decision PASS o FAIL.
 
 ## Required Outputs
 
@@ -99,6 +121,8 @@ Contenido obligatorio:
 - Desviaciones arquitectonicas detectadas y estado de ADR.
 - Evidencia de error paths: paths criticos con evidencia, paths defensivos
   justificados, gaps clasificados.
+- Matriz de trazabilidad contractual: claims relevantes, evidencia
+  identificada, resultados, gaps clasificados.
 - Decision: PASS o FAIL.
 
 ## PASS Criteria
@@ -109,6 +133,8 @@ Contenido obligatorio:
 - Las desviaciones arquitectonicas tienen ADR o estan justificadas.
 - Los error paths contractualmente relevantes tienen evidencia de tests
   proporcional o justificacion documentada.
+- La matriz de trazabilidad muestra que los claims contractuales relevantes
+  tienen evidencia identificable o justificacion documentada.
 
 ## FAIL Criteria
 
@@ -118,6 +144,8 @@ Contenido obligatorio:
   mantenibilidad.
 - Un error path critico contractualmente requerido carece de evidencia
   de test y no tiene justificacion documentada.
+- Un claim contractual critico carece de evidencia identificable y no tiene
+  justificacion documentada.
 - No hay spec verificable para comparar.
 
 ## Corrective Actions
@@ -136,6 +164,8 @@ Contenido obligatorio:
   PASS.
 - Evidencia de verificacion de error paths (paths identificados, evidencia
   de tests o justificacion de ausencia).
+- Matriz de trazabilidad contractual (claims identificados, evidencia
+  asociada, resultados).
 
 ## Handoff
 
