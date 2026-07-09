@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 from typing import Any, Dict, Optional
 
+from .exceptions import PipelineInternalError
 from .models import (
     ContractValidation,
     QualityCode,
@@ -44,7 +45,8 @@ class Validator:
                 classification=ValidationClassification.INVALID,
             )
 
-        assert frame is not None
+        if frame is None:
+            raise PipelineInternalError("Frame unexpectedly None after successful build")
 
         if frame.quality_code == QualityCode.NO_DATA:
             if any(v is not None for v in (frame.temperature_c, frame.vibration_mm_s, frame.cycle_count)):
