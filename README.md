@@ -168,6 +168,8 @@ No todos los pasos aplican a todos los proyectos. La proporcionalidad decide.
 ├── MACHINE_DIAGNOSTICS.md       # Taxonomia de diagnostico del piloto
 ├── INDUSTRIAL_PYTHON_ENGINEERING.md     # Diseno Python del piloto
 ├── IMPLEMENTATION_REVIEW.md     # Implementation Review Gate del piloto
+├── FINAL_VERIFICATION_REPORT.md # Final Verification Gate del piloto
+├── PILOT_CLOSURE_REPORT.md      # Cierre del piloto y lecciones aprendidas
 ├── agents/                      # 6 Specialized Agents
 │   ├── README.md
 │   ├── engineering-architect/AGENT.md
@@ -247,20 +249,20 @@ Fases completadas:
 - Fase 10: sincronizacion de contratos y release readiness.
 
 Fase 11 -- Proyecto piloto: *Industrial Machine Telemetry Ingestion &
-Diagnostics Pipeline*. En curso.
+Diagnostics Pipeline*. Completada.
 
 - Fase 11A -- Discovery & Pilot Proposal: completada.
 - Fase 11B -- Requirements & Technical Design: completada.
 - Fase 11C -- Implementation & Tests: completada (68 tests passing).
 - Fase 11D -- Implementation Review: completada (PASS).
-- Fase 11E -- Final Verification: pendiente.
-- Fase 11F -- Pilot Closure & Lessons Learned: pendiente.
+- Fase 11E -- Final Verification: completada (PASS).
+- Fase 11F -- Pilot Closure & Lessons Learned: completada.
 
-Estado actual: Implementation Review PASS -- Final Verification pendiente.
+Estado actual: Phase 11 completada -- Final Verification PASS.
 
 Fases pendientes:
 
-- Fase 12: evaluacion y mejora.
+- Fase 12: evaluacion y mejora (no iniciada).
 
 ## Como empezar a explorar
 
@@ -276,6 +278,10 @@ Fases pendientes:
    piloto.
 9. [IMPLEMENTATION_REVIEW.md](IMPLEMENTATION_REVIEW.md) -- Implementation
    Review Gate del piloto.
+10. [FINAL_VERIFICATION_REPORT.md](FINAL_VERIFICATION_REPORT.md) -- Final
+    Verification Gate del piloto.
+11. [PILOT_CLOSURE_REPORT.md](PILOT_CLOSURE_REPORT.md) -- cierre del piloto
+    y lecciones aprendidas.
 
 ## Politica de estructura progresiva
 
