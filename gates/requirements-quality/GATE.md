@@ -54,7 +54,24 @@ Engineering Architect
    contradictorios.
 7. Detectar decisiones tecnicas abiertas que puedan bloquear arquitectura.
 8. Clasificar cada decision como bloqueante o deferible.
-9. Producir el artefacto de salida con la decision PASS o FAIL.
+9. Verificar consistencia del orden de dependencias: comparar el orden
+   narrativo de produccion de artefactos descrito en la propuesta contra el
+   orden contractual exigido por las precondiciones reales. Consultar los
+   contratos fuente (`SKILL.md`, `GATE.md`) de cada componente activado para
+   identificar precondiciones aplicables — no duplicar precondiciones en este
+   contrato. Detectar:
+   - Artefactos narrados antes de sus precondiciones contractuales.
+   - Skills programados antes del Gate PASS que requieren como precondicion.
+   - Implementacion programada antes de disenos obligatorios.
+   - Reviews o verifications programadas antes de implementacion o tests.
+   - Handoffs incompatibles con dependencias contractuales.
+   Clasificar cada inconsistencia segun severidad e impacto:
+   - Si la inconsistencia es de orden narrativo pero no afecta la ejecucion
+     del Gate ni bloquea el workflow: finding con required action para
+     corregir la secuencia en revision futura.
+   - Si la inconsistencia implica que el workflow avanzaria sin satisfacer
+     precondiciones contractuales bloqueantes: FAIL.
+10. Producir el artefacto de salida con la decision PASS o FAIL.
 
 ## Required Outputs
 
@@ -71,6 +88,8 @@ Contenido obligatorio:
 - Ambiguedades restantes.
 - Terminos de dominio candidatos para glosario.
 - Decisiones abiertas detectadas (bloqueantes y deferibles).
+- Inconsistencias de orden de dependencias detectadas (si las hay) con
+  clasificacion finding/FAIL y required action.
 - Decision: PASS o FAIL.
 
 ## PASS Criteria
@@ -91,6 +110,9 @@ Contenido obligatorio:
 - El alcance mezcla subsistemas independientes sin separacion.
 - Hay decisiones tecnicas bloqueantes sin informacion.
 - El vocabulario de dominio es confuso o contradictorio.
+- El orden narrativo de produccion de artefactos implica que el workflow
+  avanzaria sin satisfacer precondiciones contractuales bloqueantes de skills
+  o gates.
 - El objetivo no es verificable.
 
 ## Corrective Actions
@@ -109,6 +131,9 @@ Contenido obligatorio:
 - Lista de ambiguedades detectadas y su estado (resuelta/pendiente).
 - Lista de decisiones abiertas con clasificacion bloqueante/deferible.
 - Evidencia de validacion de vocabulario (glosario o terminos confirmados).
+- Evidencia de verificacion de consistencia entre orden narrativo y orden
+  contractual de dependencias (consulta de precondiciones en contratos
+  fuente).
 
 ## Handoff
 
