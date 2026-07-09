@@ -101,15 +101,21 @@ Software Engineer
     minima, pruebas de comunicaciones, pruebas de fallo).
 19. Definir simulacion (mocks de PLC, robot, vision; simulacion de fallos;
     entornos de test reproducibles).
-20. Definir observabilidad (metricas, traces, health checks, alertas,
+20. Evaluar dependencia temporal: identificar si el sistema tiene
+    comportamiento dependiente del tiempo (watchdogs, timeouts, retries,
+    backoff, validacion de timestamps, freshness, ventanas de recuperacion,
+    debounce/delay, scheduled behavior). Si existe, decidir explicitamente
+    si clock injection aplica y documentar la decision. Ver subseccion
+    "Inyeccion de reloj".
+21. Definir observabilidad (metricas, traces, health checks, alertas,
     dashboards).
-21. Definir despliegue (estrategia, pipeline, rollback cuando aplique,
+22. Definir despliegue (estrategia, pipeline, rollback cuando aplique,
     zero-downtime cuando aplique).
-22. Definir comportamiento ante fallos externos (PLC no responde, robot en
+23. Definir comportamiento ante fallos externos (PLC no responde, robot en
     error, vision no disponible, red caida, datos invalidos, stale data).
-23. Definir riesgos y decisiones abiertas.
-24. Identificar decisiones dificiles de revertir y proponer ADRs.
-25. Producir el artefacto de salida.
+24. Definir riesgos y decisiones abiertas.
+25. Identificar decisiones dificiles de revertir y proponer ADRs.
+26. Producir el artefacto de salida.
 
 ### Comportamiento ante fallos externos
 
@@ -123,6 +129,79 @@ Para cada interfaz externa (PLC, robot, vision, datos, red):
   cuando los datos no se actualizan pero la conexion sigue activa.
 - Servicio no disponible: modo degradado, reporte, alerta.
 - Graceful shutdown: cleanup de recursos, notificacion a subsistemas.
+
+### Inyeccion de reloj
+
+Cuando el sistema tiene comportamiento dependiente del tiempo, evaluar
+explicitamente si clock injection (abstraccion de fuente de tiempo
+inyectable) es apropiado.
+
+**Clock injection es apropiado cuando:**
+
+- El comportamiento depende de tiempo observable (elapsed time, cadencia,
+  timeouts, freshness).
+- Los tests requieren avanzar o controlar el tiempo para verificar
+  transiciones, umbrales o recuperacion.
+- Usar wall-clock real introduciria sleeps, latencia o no determinismo.
+- Timeout/recovery behavior necesita reproduccion precisa y repetible.
+
+**Clock injection es innecesario cuando:**
+
+- El sistema no tiene comportamiento temporal relevante.
+- Los timestamps son datos pasivos sin decisiones basadas en elapsed time.
+- No existen timeouts, watchdogs, ventanas de recuperacion ni logica
+  programada.
+- Anadir abstraccion no mejora testabilidad ni diseno.
+
+**Cuando clock injection aplique:**
+
+- Definir una abstraccion minima de tiempo (interfaz, protocolo o funcion)
+  que exponga las operaciones temporales necesarias (e.g. tiempo
+  monotono, timestamp UTC, avance controlado).
+- Inyectar la fuente de tiempo unicamente en componentes que toman
+  decisiones temporales. No envolver todo el codigo.
+- Usar la fuente de tiempo real (wall-clock) en produccion.
+- Usar una fuente controlada o fake en tests que permita avanzar el
+  tiempo deterministicamente.
+- Evitar llamadas dispersas directas al wall clock (`time.time()`,
+  `time.monotonic()`) en logica de dominio. Centralizar el acceso al
+  tiempo a traves de la abstraccion.
+- Evitar sleeps reales en tests cuando el tiempo pueda controlarse
+  mediante la abstraccion inyectada.
+- Mantener ownership claro: un unico componente posee el estado temporal.
+- Documentar unidades y semantica temporal: monotonico vs wall-clock,
+  timezone, unidades de timestamp, unidades de timeout, reglas de
+  freshness, ventanas de recuperacion, cadencia esperada.
+
+**Proporcionalidad:**
+
+- No imponer una clase concreta, Protocol concreto, nombres
+  especificos, libreria, async, threads, scheduler framework ni
+  dependency injection framework.
+- La abstraccion debe ser la minima necesaria para testabilidad y
+  determinismo.
+- No exigir clock injection en proyectos sin comportamiento temporal
+  relevante.
+- Los requisitos temporales provienen de los contratos upstream
+  (requirements, interface contracts, diagnostics contracts, approved
+  designs). El Skill no inventa timeouts, thresholds ni valores
+  concretos.
+
+**Testabilidad temporal:**
+
+Cuando exista logica temporal relevante, la estrategia de testing debe
+contemplar evidencia para:
+
+- Antes del umbral, en el umbral, despues del umbral.
+- Transicion de timeout.
+- Transicion de recuperacion.
+- Comportamiento de eventos repetidos o consecutivos.
+- Timestamps stale o future cuando aplique.
+
+La seleccion de tests debe derivarse del contrato temporal real, no
+imponer todos los casos a todos los proyectos. Favorecer tests
+deterministicos, avance reproducible del tiempo, sin real waits cuando
+sean evitables, y verificacion explicita de boundaries temporales.
 
 ## Required Outputs
 
@@ -151,6 +230,8 @@ Contenido obligatorio:
 - Observabilidad.
 - Despliegue y rollback cuando aplique.
 - Comportamiento ante fallos externos por interfaz (incluyendo stale data).
+- Evaluacion de dependencia temporal y decision de clock injection cuando
+  aplique.
 - Riesgos.
 - Decisiones abiertas.
 - ADRs propuestos cuando aplique.
@@ -190,6 +271,9 @@ debe continuar hasta disenar cada funcion o clase.
   data).
 - Arquitectura de aplicacion, lifecycle y observabilidad definidos.
 - Estrategia de testing y simulacion definida.
+- Evaluacion de dependencia temporal documentada. Si clock injection
+  aplica, abstraccion, ownership y semantica temporal definidos. Si no
+  aplica, justificacion documentada.
 
 ## Failure Modes
 
@@ -207,6 +291,10 @@ debe continuar hasta disenar cada funcion o clase.
 - No definir observabilidad ni alertas.
 - Mezclar diseno de ingenieria con implementacion completa.
 - Asumir entorno perfecto sin fallos de red ni servicios caidos.
+- No evaluar dependencia temporal cuando el sistema tiene comportamiento
+  dependiente del tiempo (watchdogs, timeouts, recovery, freshness).
+- Usar wall-clock real directamente en logica de dominio cuando clock
+  injection mejoraria testabilidad y determinismo.
 
 ## Escalation Rules
 
@@ -230,6 +318,7 @@ debe continuar hasta disenar cada funcion o clase.
   observabilidad y despliegue integrados en el diseno de ingenieria.
 - Concurrencia/async definido cuando aplique.
 - Simulacion y testing definidos.
+- Dependencia temporal evaluada. Clock injection decidido y documentado.
 - No duplica contratos de comunicacion, integracion de vision/IA, arquitectura
   PLC ni arquitectura robotica.
 - Artefacto entregado a Software Engineer para planificacion.
