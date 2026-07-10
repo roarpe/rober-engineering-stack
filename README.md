@@ -170,6 +170,10 @@ No todos los pasos aplican a todos los proyectos. La proporcionalidad decide.
 ├── IMPLEMENTATION_REVIEW.md     # Implementation Review Gate del piloto
 ├── FINAL_VERIFICATION_REPORT.md # Final Verification Gate del piloto
 ├── PILOT_CLOSURE_REPORT.md      # Cierre del piloto y lecciones aprendidas
+├── PHASE_12_EVALUATION_AND_IMPROVEMENT_PLAN.md  # Plan de mejora (Fase 12A)
+├── PHASE_12B_IMPLEMENTATION_REVIEW.md  # IR Gate de Quick Wins (Fase 12B)
+├── PHASE_12_CLOSURE_REPORT.md   # Cierre de Phase 12
+├── .gitignore                   # Patrones de higiene de repositorio
 ├── agents/                      # 6 Specialized Agents
 │   ├── README.md
 │   ├── engineering-architect/AGENT.md
@@ -258,11 +262,20 @@ Diagnostics Pipeline*. Completada.
 - Fase 11E -- Final Verification: completada (PASS).
 - Fase 11F -- Pilot Closure & Lessons Learned: completada.
 
-Estado actual: Phase 11 completada -- Final Verification PASS.
+Fase 12 -- Evaluation & Continuous Improvement. Completada.
+
+- Fase 12A -- Evidence Consolidation & Improvement Planning: completada.
+- Fase 12B -- Quick Wins Implementation (C1, C7): completada (IR PASS).
+- Fase 12C -- Structural Improvements Implementation (C3, C5, C2, C4):
+  completada.
+- Fase 12D -- Final Verification: completada (PASS).
+- Fase 12E -- Closure: completada.
+
+Estado actual: Phase 12 completada -- Final Verification PASS.
 
 Fases pendientes:
 
-- Fase 12: evaluacion y mejora (no iniciada).
+- Ninguna fase planificada pendiente.
 
 ## Como empezar a explorar
 
@@ -282,6 +295,10 @@ Fases pendientes:
     Verification Gate del piloto.
 11. [PILOT_CLOSURE_REPORT.md](PILOT_CLOSURE_REPORT.md) -- cierre del piloto
     y lecciones aprendidas.
+12. [PHASE_12_EVALUATION_AND_IMPROVEMENT_PLAN.md](PHASE_12_EVALUATION_AND_IMPROVEMENT_PLAN.md)
+    -- plan de evaluacion y mejora de Phase 12.
+13. [PHASE_12_CLOSURE_REPORT.md](PHASE_12_CLOSURE_REPORT.md) -- cierre formal
+    de Phase 12.
 
 ## Politica de estructura progresiva
 
